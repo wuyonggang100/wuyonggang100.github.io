@@ -54,3 +54,11 @@ ssh-keygen -t rsa -C  "408727759@qq.com"
 
 git@github.com:wuyonggang100/note.git
 
+
+
+
+
+##### 在 sourcetree 中使用 ssh ，需要配置：
+
+工具 --> 选项 ---> 一般 --> ssh客户端配置 ---> ssh 客户端 ---> 选择  openSsh 的方式即可。其中 ssh 密钥选择 id_rsa 文件， id_rsa.pub 是公钥， 在 github 中存的就是公钥。
+
