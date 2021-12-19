@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+		
+        let source = new EventSource(
+            'http://127.0.0.1:8855/stream',
+        //  {withCredentials: true}
+         );
+
+        source.onopen = function (ev) { // 建立连接成功
+            console.log('建立连接成功',ev)
+        };
+        //收到后端发来的消息
+        source.onmessage = function (ev) {
+            var data = ev.data;
+            console.log('收到消息',data)
+        };
+
+        // 通信错误如中断连接等
+        source.onerror = function (ev) {
+            console.log('连接意外中断',ev)
+        };
+
+        // 浏览器端主动关闭连接
+        // source.close();
+
+        // // 自定义事件
+        // source.addEventListener('foo', function (event) {
+        //     var data = event.data;
+        // }, false);
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        HTML5 的 FileReader 对象允许Web应用程序异步读取存储在用户计算机上的文件（或原始数据缓冲区）的内容，使用 File 或 Blob 对象指定要读取的文件或数据。
+
+        FileReader 事件
+        FileReader.onabort
+        处理abort事件。该事件在读取操作被中断时触发。
+
+        FileReader.onerror
+        处理error事件。该事件在读取操作发生错误时触发。
+
+        FileReader.onload
+        处理load事件。该事件在读取操作完成时触发。
+
+        FileReader.onloadstart
+        处理loadstart事件。该事件在读取操作开始时触发。
+
+        FileReader.onloadend
+        处理loadend事件。该事件在读取操作结束时（要么成功，要么失败）触发。
+
+        FileReader.onprogress
+        处理progress事件。该事件在读取Blob时触发。
+    </div>
+    <div style="border: 1px solid red;">
+        <h2>上传CSV文件</h2>
+        <input type="file" id="file" accept=".csv" onchange="uploadfile();" />
+        <div id="result"> </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div style="border: 1px solid red;">
+        <h2>上传图片</h2>
+        <input type="file" id="file2" accept="image/*" onchange="uploadfile2();" />
+        <div id="result2">
+            <img src="" alt="" id="img">
+        </div>
+    </div>
+    <script>
+        // 上传csv格式的文件
+        function uploadfile() {
+            let reads = new FileReader();
+            file = document.getElementById('file').files[0];
+            reads.readAsText(file, 'utf-8');
+            console.log(reads);
+            // 读取成功
+            reads.onload = function (e) {
+                console.log(e)
+                // document.getElementById('result').innerText = this.result
+                document.getElementById('result').innerText = e.target.result
+            };
+            // 开始读取
+            reads.onloadstart = function (e) {
+                console.log('onloadstart ---> ', e)
+            }
+            // 读取结束
+            reads.onloadend = function (e) {
+                console.log('onloadend ---> ', e)
+            }
+            // 读取中
+            reads.onprogress = function (e) {
+                console.log('onprogress ---> ', e)
+            }
+        }
+
+        // 上传image
+        function uploadfile2() {
+            let reads = new FileReader();
+            file = document.getElementById('file2').files[0];
+            reads.readAsDataURL(file);
+            console.log(reads);
+            reads.onload = function (e) {
+                document.getElementById('img').src = this.result;
+            };
+            reads.onloadstart = function (e) {
+                console.log('onloadstart ---> ', e)
+            }
+            // 读取结束
+            reads.onloadend = function (e) {
+                console.log('onloadend ---> ', e)
+            }
+            // 读取中
+            reads.onprogress = function (e) {
+                console.log('onprogress ---> ', e)
+            }
+        }
+    </script>
+
+</body>
+
+</html>

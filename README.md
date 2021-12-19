@@ -1,2 +1,7 @@
 # wuyonggang100.github.io
-我的个人网站
+ github 首页
+ 使用 vuepress 搭建
+ 
+ ```shell script
+yarn add global vuepress
+```
